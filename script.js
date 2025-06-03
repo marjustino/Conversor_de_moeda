@@ -17,15 +17,15 @@ async function converter() {
   }
 
   try {
-    // Passo 1: BRL para USD
+    // Passo 1 da função: BRL para USD
     const rateBRLtoUSD = await getExchangeRate("BRL", "USD");
     const amountUSD = amountBRL * rateBRLtoUSD;
 
-    // Passo 2: USD para EUR
+    // Passo 2 da função: USD para EUR
     const rateUSDtoEUR = await getExchangeRate("USD", "EUR");
     const amountEUR = amountUSD * rateUSDtoEUR;
 
-    // Mostra os resultados
+    // Mostra os resultados, com fonte em negrito e quebra de linha
     document.getElementById("result").innerHTML =
       `BRL → USD: <strong>$${amountUSD.toFixed(2)}</strong><br>` +
       `USD → EUR: <strong>€${amountEUR.toFixed(2)}</strong>`;
