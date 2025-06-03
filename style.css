@@ -1,0 +1,19 @@
+/* Estilos gerais da página */
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background: #f0f0f0;
+}
+
+/* Estilo dos inputs, botões e selects */
+input, button, select {
+  padding: 10px;
+  margin: 5px;
+  font-size: 1em;
+}
+
+/* Estilo da área de resultado */
+#result {
+  margin-top: 20px;
+  font-size: 1.2em;
+}
