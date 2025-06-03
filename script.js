@@ -1,36 +1,89 @@
-// Função para obter a taxa de câmbio entre duas moedas
+const flags = {
+  BRL: "https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg",
+  USD: "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg",
+  EUR: "https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg"
+};
+
 async function getExchangeRate(from, to) {
   const response = await fetch(`https://economia.awesomeapi.com.br/json/last/${from}-${to}`);
+  if (!response.ok) throw new Error('Erro na API');
   const data = await response.json();
   const pair = `${from}${to}`;
   return parseFloat(data[pair].bid);
 }
 
-// Função principal que realiza a conversão: BRL → USD → EUR | Função composta f(g(x))
 async function converter() {
   const amountBRL = parseFloat(document.getElementById("amount").value);
+  const resultDiv = document.getElementById("result");
 
-  // Valida se o valor inserido é válido
   if (isNaN(amountBRL) || amountBRL <= 0) {
-    document.getElementById("result").innerText = "Insira um valor válido em BRL.";
+    resultDiv.innerText = "Insira um valor válido em BRL.";
+    resultDiv.classList.remove("visible");
     return;
   }
 
   try {
-    // Passo 1 da função: BRL para USD
     const rateBRLtoUSD = await getExchangeRate("BRL", "USD");
     const amountUSD = amountBRL * rateBRLtoUSD;
 
-    // Passo 2 da função: USD para EUR
     const rateUSDtoEUR = await getExchangeRate("USD", "EUR");
     const amountEUR = amountUSD * rateUSDtoEUR;
 
-    // Mostra os resultados, com fonte em negrito e quebra de linha
-    document.getElementById("result").innerHTML =
-      `BRL → USD: <strong>$${amountUSD.toFixed(2)}</strong><br>` +
-      `USD → EUR: <strong>€${amountEUR.toFixed(2)}</strong>`;
+    // Limpa o conteúdo e prepara a exibição dos resultados
+    resultDiv.classList.remove("visible");
+
+    // Cria container para USD
+    const usdDiv = document.createElement("div");
+    usdDiv.style.display = "flex";
+    usdDiv.style.alignItems = "center";
+    usdDiv.style.gap = "8px";
+
+    // Bandeira EUA sem animação
+    const usdFlag = document.createElement("img");
+    usdFlag.src = flags.USD;
+    usdFlag.alt = "Bandeira EUA";
+    usdFlag.className = "flag";
+
+
+    const usdText = document.createElement("span");
+    usdText.innerHTML = `<strong>$${amountUSD.toFixed(2)}</strong>`;
+
+    usdDiv.appendChild(usdFlag);
+    usdDiv.appendChild(usdText);
+
+    // Cria container para EUR
+    const eurDiv = document.createElement("div");
+    eurDiv.style.display = "flex";
+    eurDiv.style.alignItems = "center";
+    eurDiv.style.gap = "8px";
+    eurDiv.style.marginLeft = "25px";
+
+    // Bandeira UE sem animação
+    const eurFlag = document.createElement("img");
+    eurFlag.src = flags.EUR;
+    eurFlag.alt = "Bandeira UE";
+    eurFlag.className = "flag";
+
+
+    const eurText = document.createElement("span");
+    eurText.innerHTML = `<strong>€${amountEUR.toFixed(2)}</strong>`;
+
+    eurDiv.appendChild(eurFlag);
+    eurDiv.appendChild(eurText);
+
+    // Limpa e adiciona os elementos na div de resultado
+    resultDiv.innerHTML = "";
+    resultDiv.appendChild(usdDiv);
+    resultDiv.appendChild(eurDiv);
+
+    // Adiciona a classe visível (se necessário para estilo CSS)
+    resultDiv.classList.add("visible");
+
   } catch (error) {
     console.error(error);
-    document.getElementById("result").innerText = "Erro ao obter cotações. Tente novamente.";
+    resultDiv.innerText = "Erro ao obter cotações. Tente novamente.";
+    resultDiv.classList.remove("visible");
   }
 }
+
+document.getElementById("convertBtn").addEventListener("click", converter);

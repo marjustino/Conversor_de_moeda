@@ -1,77 +1,69 @@
-/* Estilos gerais da página */
 body {
-  font-family: Arial, sans-serif; /* Fonte principal para o corpo da página */
-  padding: 20px; /* Espaçamento interno ao redor do conteúdo */
-  background: #e6f2e6; /* Cor de fundo: verde muito claro e suave */
-  color: #2e3a2f; /* Cor do texto: verde escuro suave */
-  display: flex; /* Usa Flexbox para o layout */
-  flex-direction: column; /* Alinha os filhos em coluna (vertical) */
-  align-items: center; /* Centraliza os elementos horizontalmente */
-  min-height: 100vh; /* Altura mínima para ocupar toda a tela */
-  margin: 0; /* Remove margens padrão do body */
-  justify-content: center; /* Centraliza os elementos verticalmente */
-  text-align: center; /* Centraliza o texto */
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background: #e6f2e6;
+  color: #2e3a2f;
+  text-align: center;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-h1 {
-  font-family: 'Times New Roman', Times, serif; /* Fonte serifada para o título */
-  font-size: 4rem; /* Tamanho grande do título, porém reduzido para melhor proporção */
-  color: #4a6fa5; /* Cor azul suave, remetendo a tons de UE/USA */
-  margin-bottom: 30px; /* Espaço abaixo do título */
+input, button {
+  padding: 10px;
+  font-size: 1em;
+  margin: 10px;
+  border-radius: 5px;
+  border: 2px solid #c9d6a3;
+  background-color: #f7fbe7;
+  color: #2e3a2f;
+  min-width: 200px;
+  box-sizing: border-box;
+  text-align: center;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
-input, button, select {
-  padding: 10px 15px; /* Espaçamento interno para maior conforto ao clicar */
-  margin: 8px 5px; /* Espaço externo entre os elementos */
-  font-size: 1em; /* Tamanho da fonte proporcional ao padrão */
-  border: 2px solid #c9d6a3; /* Borda amarela esverdeada clara */
-  border-radius: 5px; /* Cantos arredondados para suavizar visual */
-  text-align: center; /* Centraliza o texto dentro dos campos */
-  background-color: #f7fbe7; /* Fundo amarelo bem suave para inputs */
-  color: #2e3a2f; /* Cor do texto: verde escuro */
-  transition: border-color 0.3s ease; /* Transição suave ao mudar a cor da borda */
-  min-width: 200px; /* Largura mínima para manter layout consistente */
-  box-sizing: border-box; /* Inclui bordas e padding na largura total */
-  display: block; /* Exibe como bloco para facilitar centralização */
-  margin-left: auto; /* Centraliza horizontalmente */
-  margin-right: auto; /* Centraliza horizontalmente */
-}
-
-input:focus, button:hover, select:focus {
-  border-color: #7ba23f; /* Cor da borda muda para verde amarelado quando foco ou hover */
-  outline: none; /* Remove o contorno padrão do navegador */
-  cursor: pointer; /* Muda o cursor para indicar que é clicável */
-  background-color: #e4f0c1; /* Fundo muda para verde claro ao focar/hover */
+input:focus, button:hover {
+  border-color: #7ba23f;
+  background-color: #e4f0c1;
+  outline: none;
+  cursor: pointer;
 }
 
 button {
-  background-color: #a8c945; /* Cor de fundo verde amarelado suave para botões */
-  color: white; /* Texto branco para contraste */
-  border: none; /* Remove borda padrão */
+  background-color: #a8c945;
+  color: white;
+  border: none;
 }
 
 button:hover {
-  background-color: #7ba23f; /* Cor de fundo verde mais escuro ao passar o mouse */
+  background-color: #7ba23f;
 }
 
 #result {
-  margin-top: 25px; /* Espaço acima do resultado */
-  font-size: 1.3em; /* Tamanho maior do texto do resultado */
-  color: #2e3a2f; /* Cor verde escuro para texto */
-  min-height: 1.5em; /* Altura mínima para evitar mudança brusca no layout */
+  margin-top: 25px;
+  font-size: 1.3em;
+  color: #2e3a2f;
+  min-height: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
 }
 
-footer {
-  font-family: Arial, Helvetica, sans-serif; /* Fonte sem serifa para o rodapé */
-  padding: 15px; /* Espaçamento interno */
-  background-color: #f9f9bb; /* Fundo amarelo claro */
-  color: #4a6fa5; /* Texto azul suave */
-  width: 100%; /* Ocupa toda a largura da tela */
-  text-align: center; /* Centraliza o texto */
-  position: fixed; /* Fixa o rodapé no fim da página */
-  bottom: 0; /* Posiciona no rodapé da janela */
-  left: 0; /* Alinha à esquerda */
-  box-shadow: 0 -2px 5px rgba(0,0,0,0.1); /* Sombra sutil acima para destaque */
-  font-size: 0.9em; /* Texto um pouco menor que o normal */
-  user-select: none; /* Impede a seleção do texto no rodapé */
+#result.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.flag {
+  width: 36px;
+  height: 24px;
+  object-fit: cover;
+  border-radius: 3px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.15);
 }
