@@ -2,8 +2,10 @@ const flags = {
   BRL: "https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg",
   USD: "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg",
   EUR: "https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg"
-};
+}; // Link das bandeiras, pegas da wikipedia para exibir no site
 
+
+// Função assíncrona para buscar a taxa de câmbio entre duas moedas usando a AwesomeAPI
 async function getExchangeRate(from, to) {
   const response = await fetch(`https://economia.awesomeapi.com.br/json/last/${from}-${to}`);
   if (!response.ok) throw new Error('Erro na API');
@@ -12,16 +14,17 @@ async function getExchangeRate(from, to) {
   return parseFloat(data[pair].bid);
 }
 
+// Função para buscar a taxa de câmbio entre duas moedas usando a AwesomeAPI de conversão
 async function converter() {
   const amountBRL = parseFloat(document.getElementById("amount").value);
   const resultDiv = document.getElementById("result");
 
-  if (isNaN(amountBRL) || amountBRL <= 0) {
+  if (isNaN(amountBRL) || amountBRL <= 0) { // Evita que o valor inserido seja string ou menor ou igual zero.
     resultDiv.innerText = "Insira um valor válido em BRL.";
     resultDiv.classList.remove("visible");
     return;
   }
-
+// Função matemática de conversão do input para as moedas selecionadas. BRL -> USD e depois USD -> EUR
   try {
     const rateBRLtoUSD = await getExchangeRate("BRL", "USD");
     const amountUSD = amountBRL * rateBRLtoUSD;
@@ -44,7 +47,7 @@ async function converter() {
     usdFlag.alt = "Bandeira EUA";
     usdFlag.className = "flag";
 
-
+// Mostra o valor formatado em euro
     const usdText = document.createElement("span");
     usdText.innerHTML = `<strong>$${amountUSD.toFixed(2)}</strong>`;
 
