@@ -6,7 +6,7 @@ async function getExchangeRate(from, to) {
   return parseFloat(data[pair].bid);
 }
 
-// Função principal que realiza a conversão: BRL → USD → EUR
+// Função principal que realiza a conversão: BRL → USD → EUR | Função composta f(g(x))
 async function converter() {
   const amountBRL = parseFloat(document.getElementById("amount").value);
 
