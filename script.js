@@ -51,8 +51,8 @@ async function converter() {
     const usdText = document.createElement("span");
     usdText.innerHTML = `<strong>$${amountUSD.toFixed(2)}</strong>`; // Exibe valor USD com 2 casas decimais
 
-    usdDiv.appendChild(usdFlag);
-    usdDiv.appendChild(usdText);
+    usdDiv.appendChild(usdFlag); // Adiciona a imagem da bandeira dos EUA dentro do container 'eurDiv'
+    usdDiv.appendChild(usdText); // Adiciona o texto com o valor convertido em euros dentro do mesmo container
 
     // Cria container para EUR
     const eurDiv = document.createElement("div");
@@ -70,8 +70,8 @@ async function converter() {
     const eurText = document.createElement("span");
     eurText.innerHTML = `<strong>€${amountEUR.toFixed(2)}</strong>`; // Exibe valor EUR com 2 casas decimais
 
-    eurDiv.appendChild(eurFlag);
-    eurDiv.appendChild(eurText);
+    eurDiv.appendChild(eurFlag); // Adiciona a imagem da bandeira da União Europeia dentro do container 'eurDiv'
+    eurDiv.appendChild(eurText); // Adiciona o texto com o valor convertido em euros dentro do mesmo container
 
     // Limpa e adiciona os elementos na div de resultado
     resultDiv.innerHTML = ""; // Remove qualquer conteúdo anterior
